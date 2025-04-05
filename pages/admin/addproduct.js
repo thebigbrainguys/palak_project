@@ -10,7 +10,7 @@ const AddProduct = ({ user, categories }) => {
 
     const [title, setTitle] = useState('')
     const [slug, setSlug] = useState('')
-    const [category, setCategory] = useState('')
+    const [category, setCategory] = useState('flowers')
     const [size, setSize] = useState('')
     const [colour, setColour] = useState('')
     const [price, setPrice] = useState('')

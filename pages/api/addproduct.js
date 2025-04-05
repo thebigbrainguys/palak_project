@@ -21,7 +21,8 @@ const handler = async (req, res) => {
         }else{
             res.status(400).json({success: false, message: "Method Not Allowed"})
         }
-    } catch{
+    } catch(e){
+        console.log(e)
         res.status(400).json({success: false, message: "Internal Server Error!"})
     }
 } 

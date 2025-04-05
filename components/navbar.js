@@ -40,15 +40,15 @@ const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subTo
         <div className="container mx-auto flex items-center justify-between px-5 lg:px-8">
           <div className="text-2xl font-bold font-serif">
             <Link className="flex flex-row items-center space-x-3" href="/">
-              <Image
+              {/* <Image
                 className="md:w-14 w-11 rounded-xl"
                 src="/logo.png"
                 width={100}
                 height={100}
                 alt="logo"
-              />
+              /> */}
               <h1 className="text-lg md:text-xl lg:text-2xl text-blue-400">
-                Gen-Z Wears
+                {process.env.NEXT_PUBLIC_NAME}
               </h1>
             </Link>
           </div>
@@ -69,22 +69,17 @@ const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subTo
             <Link href="/" onClick={closeMenu} passHref>
               <span className=" hover:text-blue-400 cursor-pointer">Home</span>
             </Link>
-            <Link href="/tshirts" onClick={closeMenu} passHref>
+            <Link href="/shop" onClick={closeMenu} passHref>
               <span className=" hover:text-blue-400 cursor-pointer">
-                T-Shirts
+                Shop
               </span>
             </Link>
-            <Link href="/hoodies" onClick={closeMenu} passHref>
+            <Link href="/about" onClick={closeMenu} passHref>
               <span className=" hover:text-blue-400 cursor-pointer">
-                Hoodies
-              </span>
+                About Us
+              </span> 
             </Link>
-            <Link href="/mugs" onClick={closeMenu} passHref>
-              <span className=" hover:text-blue-400 cursor-pointer">Mugs</span>
-            </Link>
-            <Link href="/shoes" onClick={closeMenu} passHref>
-              <span className=" hover:text-blue-400 cursor-pointer">Shoes</span>
-            </Link>
+      
             <Link href="/contact" onClick={closeMenu} passHref>
               <span className=" hover:text-blue-400 cursor-pointer">
                 Contact Us

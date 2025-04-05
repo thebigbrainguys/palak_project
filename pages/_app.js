@@ -117,8 +117,8 @@ export default function App({ Component, pageProps }) {
   return( 
   <>
     <Head>
-        <title>Gen-Z Wears</title>
-        <meta name="description" content="Gen-Z Wears - Wearables by Gen-Z" />
+        <title>{process.env.NEXT_PUBLIC_NAME}</title>
+        <meta name="description" content="The Flora Shop - Flowers shopping website" />
       </Head>
       <LoadingBar
         color='#33C1FF'
