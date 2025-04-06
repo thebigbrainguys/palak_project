@@ -127,7 +127,7 @@ export default function App({ Component, pageProps }) {
         onLoaderFinished={() => setProgress(0)}
       />
     {key && <Navbar logout={logout} user={user} key={key} cart={cart} addToCart={addToCart} clearCart={clearCart} removeFromCart={removeFromCart} subTotal={subTotal} />}
-    <Component setKey={setKey} user={user} ToastContainer={ToastContainer} buyNow={buyNow} cart={cart} addToCart={addToCart} clearCart={clearCart} removeFromCart={removeFromCart} subTotal={subTotal} {...pageProps} />;
+    <Component setKey={setKey} user={user} ToastContainer={ToastContainer} buyNow={buyNow} cart={cart} addToCart={addToCart} clearCart={clearCart} removeFromCart={removeFromCart} subTotal={subTotal} {...pageProps} />
     <Footer/>
   </>)
 }

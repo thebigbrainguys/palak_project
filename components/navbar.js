@@ -35,21 +35,18 @@ const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subTo
   };
 
   return (
-    <header className="text-gray-600 body-font sticky top-0 bg-white z-10">
+    <header className="text-gray-600 body-font sticky top-0 z-10 bg-pink-50">
       <nav className="py-2 shadow-lg ">
         <div className="container mx-auto flex items-center justify-between px-5 lg:px-8">
           <div className="text-2xl font-bold font-serif">
             <Link className="flex flex-row items-center space-x-3" href="/">
-              {/* <Image
-                className="md:w-14 w-11 rounded-xl"
-                src="/logo.png"
-                width={100}
-                height={100}
-                alt="logo"
-              /> */}
-              <h1 className="text-lg md:text-xl lg:text-2xl text-blue-400">
-                {process.env.NEXT_PUBLIC_NAME}
-              </h1>
+              <span className="text-5xl">🌺</span>
+              <div className="flex flex-col">
+                <h1 className="text-lg md:text-xl lg:text-2xl text-pink-400">
+                  {process.env.NEXT_PUBLIC_NAME}
+                </h1>
+                <p className="text-xs ">Make your living space livable</p>
+              </div>
             </Link>
           </div>
           <div className="md:hidden">
@@ -60,8 +57,7 @@ const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subTo
               {isOpen ? <BsCrosshair /> : <GiHamburgerMenu />}
             </button>
           </div>
-          {/* <div className={`md:justify-center  space-x-7 font-bold md:flex ${isOpen ? 'flex flex-col' : 'hidden'} space-y-5 md:flex-row md:items-center`}> */}
-          <div
+           <div
             className={`md:flex md:flex-row md:space-y-0 md:items-center md:space-x-7 font-bold ${
               isOpen ? "flex flex-col space-y-5" : "hidden"
             }`}
@@ -70,18 +66,18 @@ const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subTo
               <span className=" hover:text-blue-400 cursor-pointer">Home</span>
             </Link>
             <Link href="/shop" onClick={closeMenu} passHref>
-              <span className=" hover:text-blue-400 cursor-pointer">
+              <span className=" hover:text-purple-400 cursor-pointer">
                 Shop
               </span>
             </Link>
             <Link href="/about" onClick={closeMenu} passHref>
-              <span className=" hover:text-blue-400 cursor-pointer">
+              <span className=" hover:text-pink-400 cursor-pointer">
                 About Us
               </span> 
             </Link>
       
             <Link href="/contact" onClick={closeMenu} passHref>
-              <span className=" hover:text-blue-400 cursor-pointer">
+              <span className=" hover:text-yellow-400 cursor-pointer">
                 Contact Us
               </span>
             </Link>
@@ -89,7 +85,7 @@ const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subTo
               <MdAccountCircle className="" onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}} size={35}/>
               
               <span onMouseOver={()=>{setDropdown(true)}} onMouseLeave={()=>{setDropdown(false)}}>
-              {dropdown && <div className="absolute top-15 right-20 w-36 bg-blue-100 rounded-md px-5 py-3">
+              {dropdown && <div className="absolute top-15 right-20 w-36 bg-pink-100 rounded-md px-5 py-3">
                 <ul className="">
                   <Link href={"/myaccount"}><li className="hover:text-blue-400">My Account</li></Link>
                   <Link href={"/orders"}><li className="hover:text-blue-400">Orders</li></Link>

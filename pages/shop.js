@@ -29,7 +29,7 @@ const Flowers = ({products}) => {
                           {products[item].size.includes("XL") && <span className="border p-1 m-2">XL</span>}
                           {products[item].size.includes("XXL") && <span className="border p-1 m-2">XXL</span>}
                         </div>
-                        <div className="mt-3">
+                        {/* <div className="mt-3">
                           {products[item].colour.includes("blue") && <button className="border-2 border-gray-300 ml-1 bg-blue-400 rounded-full w-6 h-6 focus:outline-none"></button>}
                           {products[item].colour.includes("red") && <button className="border-2 border-gray-300 ml-1 bg-red-400 rounded-full w-6 h-6 focus:outline-none"></button>}
                           {products[item].colour.includes("green") && <button className="border-2 border-gray-300 ml-1 bg-green-300 rounded-full w-6 h-6 focus:outline-none"></button>}
@@ -37,7 +37,7 @@ const Flowers = ({products}) => {
                           {products[item].colour.includes("black") && <button className="border-2 border-gray-300 ml-1 bg-black rounded-full w-6 h-6 focus:outline-none"></button>}
                           {products[item].colour.includes("white") && <button className="border-2 border-gray-300 ml-1 bg-white rounded-full w-6 h-6 focus:outline-none"></button>}
                           {products[item].colour.includes("gray") && <button className="border-2 border-gray-300 ml-1 bg-gray-400 rounded-full w-6 h-6 focus:outline-none"></button>}
-                        </div>
+                        </div> */}
                       </div>
                     </Link>
                   </div>

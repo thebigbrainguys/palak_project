@@ -19,7 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     <div className="group relative">
       <div className="relative h-80 w-full overflow-hidden rounded-lg bg-gray-100">
         <Image
-          src={product.image || "/placeholder.svg"}
+          src={product.image}
           alt={product.name}
           fill
           className="object-cover object-center group-hover:scale-105 transition-transform duration-300"
@@ -48,7 +48,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       <div className="mt-4">
         <h3 className="text-gray-900 font-medium">{product.name}</h3>
-        <p className="text-gray-700 mt-1">${product.price.toFixed(2)}</p>
+        <p className="text-gray-700 mt-1">₹{product.price.toFixed(2)}</p>
       </div>
     </div>
   )
