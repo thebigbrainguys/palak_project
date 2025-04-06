@@ -64,7 +64,7 @@ const Slug = ({ buyNow, addToCart, product, variants, error }) => {
       setColour(product.colour);
       setSize(product.size);
     }
-  }, [router.query])
+  }, [router.query, product.colour, product.size, error])
   
 
   const refreshVariant = (newColour, newSize) => {
