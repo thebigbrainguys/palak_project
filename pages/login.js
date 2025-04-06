@@ -34,7 +34,8 @@ const Login = ({setKey}) => {
     e.preventDefault();
     const data = { email, password }
     try {
-      let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+      // let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+      let res = await fetch(`/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
