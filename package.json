@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.0",
     "@material-tailwind/react": "^2.1.9",
     "@mui/material": "^5.16.5",
     "cookie": "^1.0.2",
@@ -19,7 +20,7 @@
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.486.0",
     "mongoose": "^8.4.1",
-    "next": "14.2.3",
+    "next": "^14.2.3",
     "paytmchecksum": "^1.5.1",
     "react": "^18",
     "react-dom": "^18",

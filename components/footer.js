@@ -34,9 +34,17 @@ const Footer = () => {
 
         {/* Copyright */}
         <p className="text-xs text-gray-400">
-          © {new Date().getFullYear()} Flora Shop — Designed by 
-          <span className="ml-1 text-pink-500">Palak Rangari</span>
-        </p>
+  © {new Date().getFullYear()} Flora Shop — Designed by 
+  <a
+    href="https://www.linkedin.com/in/palak-rangari-6831b7356/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="ml-1 text-pink-500"
+  >
+    Palak Rangari
+  </a>
+</p>
+
       </div>
     </footer>
   )

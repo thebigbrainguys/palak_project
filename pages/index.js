@@ -6,10 +6,50 @@ import CategoryIcon from "@/components/category-icon"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 
+import { useState, useEffect } from "react";
+
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
 const inter = Inter({ subsets: ["latin"] })
 
 export default function Home() {
-  // Sample data for shoes
+  const API_KEY = process.env.NEXT_PUBLIC_API_KEY
+  const genAI = new GoogleGenerativeAI(API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const predefinedPrompt = "You are a friendly and knowledgeable virtual assistant for a flower e-commerce website name Flora Shop. Your job is to help users browse flowers, find the perfect bouquet, understand flower meanings, handle delivery questions, and guide them through the purchase process. Always respond politely and concisely. Suggest flowers based on occasion, preferences, and budget when asked.";
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    const userMessage = { role: 'user', text: input };
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
+
+    const fullPrompt = `${predefinedPrompt}${input}`;
+
+    try {
+      const result = await model.generateContent(fullPrompt);
+      const responseText = await result.response.text();
+
+      const aiMessage = { role: 'ai', text: responseText };
+      setMessages([...updatedMessages, aiMessage]);
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+      setInput('');
+    }
+  };
   const trendingShoes = [
     {
       id: 1,
@@ -57,8 +97,94 @@ export default function Home() {
 
 
   return (
+    
     <main className={`min-h-screen ${inter.className}`}>
-   
+      <div style={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: 1000 }}>
+        <div
+          onClick={() => setIsOpen(!isOpen)}
+          style={{
+            backgroundColor: '#007bff',
+            color: '#fff',
+            padding: '10px 20px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            textAlign: 'center',
+          }}
+        >
+          Chat with AI
+        </div>
+        {isOpen && (
+          <div
+            style={{
+              backgroundColor: '#fff',
+              border: '1px solid #ccc',
+              borderRadius: '10px',
+              width: '400px',
+              maxHeight: '400px',
+              overflowY: 'auto',
+              padding: '10px',
+              marginTop: '10px',
+              boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+            }}
+          >
+            <div
+              style={{
+                border: '1px solid #ccc',
+                padding: '10px',
+                borderRadius: '10px',
+                height: '300px',
+                overflowY: 'auto',
+                marginBottom: '10px',
+              }}
+            >
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  style={{
+                    marginBottom: '10px',
+                    textAlign: message.role === 'user' ? 'right' : 'left',
+                  }}
+                >
+                  <strong>{message.role === 'user' ? 'You' : 'AI'}:</strong> {message.text}
+                </div>
+              ))}
+              {loading && <p>Loading...</p>}
+            </div>
+            <form onSubmit={handleSubmit} style={{ display: 'flex' }}>
+              <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Enter your message"
+                style={{
+                  flex: '1',
+                  padding: '10px',
+                  borderRadius: '5px',
+                  marginRight: '10px',
+                  border: '1px solid #ccc',
+                }}
+              />
+              <button
+                type="submit"
+                style={{
+                  padding: '10px 20px',
+                  borderRadius: '5px',
+                  backgroundColor: '#007bff',
+                  color: '#fff',
+                  border: 'none',
+                }}
+              >
+                Send
+              </button>
+            </form>
+            {error && (
+              <div style={{ marginTop: '10px', color: 'red' }}>
+                <p>{error}</p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
       <section className="relative">
         <Carousel />
       </section>
