@@ -152,10 +152,10 @@ const Navbar = ({logout, user, cart, addToCart, removeFromCart, clearCart, subTo
             </ol>
             <span className="total font-semibold text-md flex justify-center mt-5">Sub Total: ₹{subTotal}</span>
             <div className="flex justify-center space-x-2 mt-10">
-              <Link href="/checkout">
-              <button disabled={Object.keys(cart).length === 0} onClick={toggleCart} className="disabled:bg-blue-300 flex text-white bg-blue-300 border-0 py-1 px-2 focus:outline-none hover:bg-blue-400 rounded text-lg">
+              <Link href="/checkout" onClick={toggleCart} className="disabled:bg-blue-300 flex text-white bg-blue-300 border-0 py-1 px-2 focus:outline-none hover:bg-blue-400 rounded text-lg">
+              {/* <button disabled={Object.keys(cart).length === 0} className="disabled:bg-blue-300 flex text-white bg-blue-300 border-0 py-1 px-2 focus:outline-none hover:bg-blue-400 rounded text-lg"> */}
                 Checkout
-              </button>
+              {/* </button> */}
               </Link>
               <button
                 onClick={clearCart}

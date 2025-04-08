@@ -21,41 +21,41 @@ const Checkout = ({ cart, addToCart, clearCart, removeFromCart, subTotal, user }
   
 
   useEffect(() => {
-    const fetchPincodes = async () =>{
-      let response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
-      let result = await response.json();
-      if(Object.keys(result).includes(pincode)){
-        setCity(result[pincode][0])
-        setState(result[pincode][1])
-      }else{
-        setCity('')
-        setState('')
-      }
-    }
-    fetchPincodes();
+    // const fetchPincodes = async () =>{
+    //   let response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+    //   let result = await response.json();
+    //   if(Object.keys(result).includes(pincode)){
+    //     setCity(result[pincode][0])
+    //     setState(result[pincode][1])
+    //   }else{
+    //     setCity('')
+    //     setState('')
+    //   }
+    // }
+    // fetchPincodes();
     if(user.email){
       setEmail(user.email)
     }
   }, [user.email, router, router.query, pincode])
 
-  useEffect(() => {
-    const fun = async()=>{
-      let token = {token: user.value}
-      let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(token),
-      });
-      a = await a.json();
-      setName(a.name);
-      setAddress(a.address);
-      setPhone(a.phoneno);
-      setPincode(a.pincode);
-    }
-    fun()
-  }, [user.value])
+  // useEffect(() => {
+  //   const fun = async()=>{
+  //     let token = {token: user.value}
+  //     let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
+  //       method: "POST", // or 'PUT'
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(token),
+  //     });
+  //     a = await a.json();
+  //     setName(a.name);
+  //     setAddress(a.address);
+  //     setPhone(a.phoneno);
+  //     setPincode(a.pincode);
+  //   }
+  //   fun()
+  // }, [user.value])
   
 
 
@@ -85,6 +85,12 @@ const Checkout = ({ cart, addToCart, clearCart, removeFromCart, subTotal, user }
     if (e.target.name == "phone") {
       setPhone(e.target.value)
     }
+    if (e.target.name == "city") {
+      setCity(e.target.value)
+    }
+    if (e.target.name == "state") {
+      setState(e.target.value)
+    }
     if (e.target.name == "pincode") {
       setPincode(e.target.value)
     }
@@ -98,7 +104,7 @@ const Checkout = ({ cart, addToCart, clearCart, removeFromCart, subTotal, user }
     let txnRes
     const data = { cart, subTotal, oid, email: email, name: name, address: address, pincode: pincode, phone: phone ,city: city, state: state};
     try {
-      let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
+      let a = await fetch(`/api/pretransaction`, {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +116,7 @@ const Checkout = ({ cart, addToCart, clearCart, removeFromCart, subTotal, user }
       if(txnRes.success){
         // console.log("Reached here")
         // console.log(txnRes.url)
-        router.push(`${process.env.NEXT_PUBLIC_HOST}/${txnRes.url}`)
+        router.push(`/${txnRes.url}`)
         // txnToken = txnRes.txnToken
       }else{
         toast.error(txnRes.error, {
@@ -131,50 +137,6 @@ const Checkout = ({ cart, addToCart, clearCart, removeFromCart, subTotal, user }
       return
     }
 
-    // var config = {
-    //   "root": "",
-    //   "flow": "DEFAULT",
-    //   "data": {
-    //     "orderId": oid, /* update order id */
-    //     "token": txnToken, /* update token value */
-    //     "tokenType": "TXN_TOKEN",
-    //     "amount": subTotal /* update amount */
-    //   },
-    //   "handler": {
-    //     "notifyMerchant": function (eventName, data) {
-    //       console.log("notifyMerchant handler function called");
-    //       console.log("eventName => ", eventName);
-    //       console.log("data => ", data);
-    //     }
-    //   }
-    // };
-    // // initialze configuration using init method
-    // if(txnRes.success){
-    //   if (window.Paytm && window.Paytm.CheckoutJS) {
-    //     // Initialize configuration using init method
-    //     window.Paytm.CheckoutJS.init(config).then(function onSuccess() {
-    //         // After successfully updating configuration, invoke JS Checkout
-    //         window.Paytm.CheckoutJS.invoke();
-    //     }).catch(function onError(error) {
-    //         console.log("error => ", error);
-    //     });
-    //   } else {
-    //       console.error("Paytm SDK not loaded");
-    //   }
-    // } else {
-    //   clearCart()
-    //   toast.error('Error occured while placing order! Please refresh and try again.', {
-    //     position: "bottom-center",
-    //     autoClose: 2000,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //     progress: undefined,
-    //     theme: "light",
-    //     });
-    // }
-
   }
 
   return (
@@ -193,7 +155,7 @@ const Checkout = ({ cart, addToCart, clearCart, removeFromCart, subTotal, user }
       <Head>
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0" />
       </Head>
-      <Script type="application/javascript" src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`} crossorigin="anonymous" />
+      {/* <Script type="application/javascript" src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`} crossorigin="anonymous" /> */}
       <h1 className="font-bold text-2xl text-center my-10">Checkout</h1>
       <h2 className="mx-auto w-3/4 text-lg font-semibold mb-4">1. Delivery Details</h2>
       <div className="mx-auto w-3/4 md:flex md:space-x-2">

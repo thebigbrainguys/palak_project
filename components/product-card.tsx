@@ -1,6 +1,7 @@
 import Image from "next/image"
-import { ShoppingBag, Heart } from "lucide-react"
+import { ShoppingBag, Heart} from "lucide-react"
 import React from "react"
+import Link from "next/link"
 
 interface Product {
   id: number
@@ -14,7 +15,7 @@ interface ProductCardProps {
   product: Product
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps, {addToCart}) {
   return (
     <div className="group relative">
       <div className="relative h-80 w-full overflow-hidden rounded-lg bg-gray-100">
@@ -37,7 +38,9 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="flex justify-between gap-2">
             <button className="bg-white text-gray-900 flex-1 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors flex items-center justify-center">
               <ShoppingBag className="h-4 w-4 mr-1" />
-              Add to Cart
+              <Link href={'/shop'}>
+                Shop Now
+              </Link>
             </button>
             <button className="bg-white text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition-colors">
               <Heart className="h-4 w-4" />

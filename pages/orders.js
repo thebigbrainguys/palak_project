@@ -12,7 +12,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       let myuser = JSON.parse(localStorage.getItem("myuser"))
-      let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myorders`, {
+      let a = await fetch(`/api/myorders`, {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
